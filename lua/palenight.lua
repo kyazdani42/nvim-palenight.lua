@@ -51,7 +51,7 @@ local editor_syntax = {
     NonText      = {},
     Normal       = { fg = fg_light, bg = bg },
     NormalFloat  = {},
-    Pmenu        = { bg = bg_light, fg = fg_light },
+    Pmenu        = { bg = bg_dark, fg = fg_light },
     PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
     PmenuSbar    = { bg = bg_lighter },
     PmenuThumb   = { bg = fg },
@@ -92,7 +92,7 @@ local code_syntax = {
     Identifier     = { fg = blue },
     Function       = { fg = cyan, gui = 'italic' },
 
-    Statement      = { fg = cyan, gui = 'italic' },
+    Statement      = { fg = blue, gui = 'italic' },
     Conditional    = { fg = cyan, gui = 'italic' },
     Repeat         = { fg = cyan, gui = 'italic' },
     Label          = { fg = cyan, gui = 'italic' },
@@ -100,15 +100,15 @@ local code_syntax = {
     Exception      = { fg = cyan, gui = 'italic' },
     Keyword        = { fg = orange },
 
-    PreProc        = { fg = fg },
-    Include        = { fg = fg },
-    Define         = { fg = fg },
-    Macro          = { fg = fg },
-    PreCondit      = { fg = fg },
+    Include        = { fg = blue },
+    Define         = { fg = blue },
+    Macro          = { fg = yellow },
+    PreProc        = { fg = fg, gui = 'italic' },
+    PreCondit      = { fg = fg, gui = 'italic' },
 
     Type           = { fg = yellow },
     StorageClass   = { fg = yellow },
-    Structure      = { fg = fg_light },
+    Structure      = { fg = yellow },
     Typedef        = { fg = blue },
 
     Special        = { fg = cyan },
@@ -136,6 +136,27 @@ local plugin_syntax = {
 }
 
 for group, styles in pairs(plugin_syntax) do
+    highlight(group, styles)
+end
+
+local lang_syntax = {
+    luaTable = { fg = fg_light },
+    luaBraces = { fg = fg_light },
+    luaIn = { fg = cyan, gui = 'italic' },
+
+    -- https://github.com/tbastos/vim-lua
+    luaFunc = { fg = blue },
+    luaFuncCall = { fg = blue },
+    luaFuncName = { fg = blue },
+    luaBuiltIn = { fg = blue },
+    luaLocal = { fg = purple },
+    luaSpecialValue = { fg = blue },
+    luaFunction = { fg = cyan, gui = 'italic' },
+    luaSymbolOperator = { fg = cyan },
+    luaConstant = { fg = orange }
+}
+
+for group, styles in pairs(lang_syntax) do
     highlight(group, styles)
 end
 
