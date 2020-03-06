@@ -1,83 +1,159 @@
-vim.fn.system('echo 1 > /home/kiyan/test')
 local function highlight(group, styles)
     local gui = styles.gui and 'gui='..styles.gui or 'gui=NONE'
     local sp = styles.sp and 'guisp='..styles.sp or 'guisp=NONE'
     local fg = styles.fg and 'guifg='..styles.fg or 'guifg=NONE'
     local bg = styles.bg and 'guibg='..styles.bg or 'guibg=NONE'
-    vim.api.nvim_command('hi! '..group..' '..gui..' '..sp..' '..fg..' '..bg)
+    vim.api.nvim_command('highlight '..group..' '..gui..' '..sp..' '..fg..' '..bg)
 end
 
-local colors = {
-    red             = '#ff5370',
-    light_red       = '#ff86a9',
-    dark_red        = '#be5046',
-    green           = '#c3e88d',
-    yellow          = '#ffcb6b',
-    dark_yellow     = '#f78c6c',
-    blue            = '#82b1ff',
-    purple          = '#c792ea',
-    blue_purple     = '#939ede',
-    cyan            = '#89DDFF',
-    white           = '#bfc7d5',
-    background      = '#292D3E',
-    dark_background = '#1c2f2b',
-    comment_grey    = '#697098',
-    gutter_fg_grey  = '#4B5263',
-    cursor_grey     = '#2C323C',
-    visual_grey     = '#3E4452',
-    menu_grey       = '#3E4452',
-    special_grey    = '#3B4048',
-    vertsplit       = '#181A1F',
-    white_mask_1    = '#333747',
-    white_mask_3    = '#474b59',
-    white_mask_11   = '#989aa2',
-};
+local bg_dark    = '#1c1f2b'
+local bg         = '#292d3e'
+local bg_light   = '#32374d'
+local bg_lighter = '#444267'
+local grey       = '#8796b0'
+local red        = '#f07178'
+local heavy_red  = '#ff5370'
+local green      = '#c3e88d'
+local blue       = '#82aaff'
+local yellow     = '#ffcb6b'
+local orange     = '#f78c6c'
+local purple     = '#c792ea'
+local cyan       = '#89ddff'
+local fg         = '#959dcb'
+local fg_light   = '#bfc7d5'
+local fg_dark    = '#676e96'
+local white      = '#ffffff'
 
-local red              = colors.red
-local light_red        = colors.light_red
-local dark_red         = colors.dark_red
-local green            = colors.green
-local yellow           = colors.yellow
-local dark_yellow      = colors.dark_yellow
-local blue             = colors.blue
-local purple           = colors.purple
-local blue_purple      = colors.blue_purple
-local cyan             = colors.cyan
-local white            = colors.white
-local background       = colors.background
-local dark_background  = colors.dark_background
-local comment_grey     = colors.comment_grey
-local gutter_fg_grey   = colors.gutter_fg_grey
-local cursor_grey      = colors.cursor_grey
-local visual_grey      = colors.visual_grey
-local menu_grey        = colors.menu_grey
-local special_grey     = colors.special_grey
-local vertsplit        = colors.vertsplit
-
-local definitions = {
-    Normal = { fg = white, bg = background },
-    CursorLine = { bg = dark_background },
+local editor_syntax = {
+    CursorLine = { bg = bg_dark },
+    Conceal = {},
+    Cursor = { fg = bg, bg = yellow },
+    Directory = { fg = blue, gui = 'bold' },
+    DiffAdd = {},
+    DiffChange = {},
+    DiffDelete = {},
+    DiffText = { },
+    EndOfBuffer = { bg = bg, fg = bg },
+    ErrorMsg = { fg = red, gui = 'bold' },
+    VertSplit = { bg = bg, fg = bg_dark },
+    Folded = {},
+    FoldColumn = {},
+    SignColumn = {},
+    IncSearch = {},
+    Substitute = {},
+    LineNr = { fg = fg_dark },
+    CursorLineNr = { fg = fg },
+    MatchParen = { fg = cyan, gui = 'bold' },
+    ModeMsg = {},
+    MsgArea = {},
+    MsgSeparator = {},
+    MoreMsg = {},
+    NonText = {},
+    Normal = { fg = fg_light, bg = bg },
+    NormalFloat = {},
+    Pmenu = { bg = bg_light, fg = fg_light },
+    PmenuSel = { bg = cyan, fg = bg_lighter, gui = 'bold' },
+    PmenuSbar = { bg = bg_lighter },
+    PmenuThumb = { bg = fg },
+    Question = {},
+    QuickFixLine = {},
+    Search = {},
+    SpecialKey = {},
+    SpellBad = {},
+    SpellCap = {},
+    SpellLocal = {},
+    SpellRare = {},
+    StatusLine = {},
+    StatusLineNC = {},
+    TabLine = {},
+    TabLineFill = {},
+    TabLineSel = {},
+    Title = {},
+    Visual = {},
+    VisualNOS = {},
+    WarningMsg = { fg = orange, gui = 'italic' },
+    Whitespace = { bg = orange },
+    WildMenu = {}
 }
 
-for group, styles in pairs(definitions) do
+for group, styles in pairs(editor_syntax) do
     highlight(group, styles)
 end
 
-vim.api.nvim_set_var('terminal_color_0',          background)
+local code_syntax = {
+    Comment = { fg = fg_dark, gui = 'italic' },
+    Constant = { fg = yellow },
+    String = { fg = green },
+    Character = { fg = green, gui = 'bold' },
+    Number = { fg = orange },
+    Float = { fg = orange },
+    Boolean = { fg = orange },
+
+    Identifier = { fg = blue },
+    Function = { fg = cyan, gui = 'italic' },
+
+    Statement = { fg = cyan, gui = 'italic' },
+    Conditional = { fg = cyan, gui = 'italic' },
+    Repeat = { fg = cyan, gui = 'italic' },
+    Label = { fg = cyan, gui = 'italic' },
+    Operator = { fg = cyan, gui = 'italic' },
+    Exception = { fg = cyan, gui = 'italic' },
+    Keyword = { fg = orange },
+
+    PreProc = { fg = fg },
+    Include = { fg = fg },
+    Define = { fg = fg },
+    Macro = { fg = fg },
+    PreCondit = { fg = fg },
+
+    Type = { fg = yellow },
+    StorageClass = { fg = yellow },
+    Structure = { fg = fg_light },
+    Typedef = { fg = blue },
+
+    Special = { fg = cyan },
+    SpecialChar = { fg = cyan },
+    Tag = { fg = orange },
+    Delimiter = { },
+    SpecialComment = { fg = fg, gui = 'bold' },
+    Debug = { fg = yellow },
+
+    Underlined = { fg = cyan, gui = 'underline' },
+    Ignore = {},
+    Error = { fg = heavy_red },
+    Todo = { fg = purple, gui = 'bold' },
+}
+
+for group, styles in pairs(code_syntax) do
+    highlight(group, styles)
+end
+
+local plugin_syntax = {
+    GitGutterAdd = { fg = green },
+    GitGutterChange = { fg = yellow },
+    GitGutterDelete = { fg = red },
+    GitGutterChangeDelete = { fg = orange },
+}
+
+for group, styles in pairs(plugin_syntax) do
+    highlight(group, styles)
+end
+
+vim.api.nvim_set_var('terminal_color_0',          bg)
 vim.api.nvim_set_var('terminal_color_1',          red)
 vim.api.nvim_set_var('terminal_color_2',          green)
 vim.api.nvim_set_var('terminal_color_3',          yellow)
 vim.api.nvim_set_var('terminal_color_4',          blue)
 vim.api.nvim_set_var('terminal_color_5',          purple)
 vim.api.nvim_set_var('terminal_color_6',          cyan)
-vim.api.nvim_set_var('terminal_color_7',          white)
-vim.api.nvim_set_var('terminal_color_8',          visual_grey)
-vim.api.nvim_set_var('terminal_color_9',          dark_red)
+vim.api.nvim_set_var('terminal_color_7',          fg)
+vim.api.nvim_set_var('terminal_color_8',          grey)
+vim.api.nvim_set_var('terminal_color_9',          red)
 vim.api.nvim_set_var('terminal_color_10',         green)
-vim.api.nvim_set_var('terminal_color_11',         dark_yellow)
+vim.api.nvim_set_var('terminal_color_11',         orange)
 vim.api.nvim_set_var('terminal_color_12',         blue)
 vim.api.nvim_set_var('terminal_color_13',         purple)
 vim.api.nvim_set_var('terminal_color_14',         cyan)
-vim.api.nvim_set_var('terminal_color_15',         comment_grey)
-vim.api.nvim_set_var('terminal_color_background', background)
-vim.api.nvim_set_var('terminal_color_foreground', white)
+vim.api.nvim_set_var('terminal_color_15',         white)
+vim.api.nvim_set_var('terminal_color_background', bg)
+vim.api.nvim_set_var('terminal_color_foreground', fg)

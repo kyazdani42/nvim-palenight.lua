@@ -1,9 +1,16 @@
-local colors = {normal = {}, inactive = {}, insert = {}, replace = {}, visual = {}, tabline = {}}
+local colors = {
+    normal = {},
+    inactive = {},
+    insert = {},
+    replace = {},
+    visual = {},
+    tabline = {}
+}
 
-local colors_vertsplit = {"#181A1F", 59, 15}
-local colors_special_grey = {"#3B4048", 238, 15}
-local colors_menu_grey = {"#3E4452", 237, 8}
-local colors_cursor_grey = {"#2C323C", 236, 8}
+local colors_vertsplit = {"#1c1f2b", 59, 15}
+local colors_special_grey = {"#292d3e", 238, 15}
+local colors_menu_grey = {"#3B4253", 237, 8}
+local colors_cursor_grey = {"#292d3e", 236, 8}
 local colors_gutter_fg_grey = {"#4B5263", 238, 15}
 local colors_blue = {"#82b1ff", 39, 4}
 local colors_dark_red = {"#BE5046", 196, 9}
@@ -45,4 +52,7 @@ colors.inactive.left   = { { colors_black, colors_menu_grey }, { colors_black, c
 colors.inactive.right  = colors.inactive.left
 colors.inactive.middle = { { colors_black, colors_menu_grey } }
 
-vim.api.nvim_set_var('lightline#colorscheme#palenight#palette', vim.api.nvim_call_function('lightline#colorscheme#flatten', { colors }))
+vim.api.nvim_set_var(
+    'lightline#colorscheme#palenight#palette',
+    vim.api.nvim_call_function('lightline#colorscheme#flatten', { colors })
+)
