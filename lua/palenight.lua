@@ -1,3 +1,22 @@
+-- vim:fdm=marker
+-- Vim Color File
+-- Name:       nvim-palenight.lua
+-- Maintainer: https://github.com/kyazdani42
+-- License:    The MIT License (MIT)
+-- Based On:   https://github.com/drewtempelmeyer/palenight.vim and vscode material palenight
+
+-- TODO: 
+-- Fix git stuff, (check git commit)
+-- Finish and check the editor highlight
+-- Better vim default syntax
+-- Color rust.vim
+-- Color js plugin
+-- Color ts plugin
+-- Color c/cpp plugin
+-- Color python plugin
+
+-- Highlight Function And Color definitons {{{
+
 local function highlight(group, styles)
     local gui = styles.gui and 'gui='..styles.gui or 'gui=NONE'
     local sp = styles.sp and 'guisp='..styles.sp or 'guisp=NONE'
@@ -6,41 +25,47 @@ local function highlight(group, styles)
     vim.api.nvim_command('highlight '..group..' '..gui..' '..sp..' '..fg..' '..bg)
 end
 
-local bg_dark    = '#1c1f2b'
-local bg         = '#292d3e'
-local bg_light   = '#32374d'
-local bg_lighter = '#444267'
-local grey       = '#8796b0'
-local red        = '#f07178'
-local heavy_red  = '#ff5370'
-local green      = '#c3e88d'
-local blue       = '#82aaff'
-local yellow     = '#ffcb6b'
-local orange     = '#f78c6c'
-local purple     = '#c792ea'
-local cyan       = '#89ddff'
-local fg         = '#959dcb'
-local fg_light   = '#bfc7d5'
-local fg_dark    = '#676e96'
-local white      = '#ffffff'
+local bg_dark        = '#1c1f2b'
+local bg             = '#292d3e'
+local bg_light       = '#32374d'
+local bg_lighter     = '#444267'
+local grey           = '#8796b0'
+local red            = '#f07178'
+local heavy_red      = '#ff5370'
+local green          = '#c3e88d'
+local blue           = '#82aaff'
+local yellow         = '#ffcb6b'
+local orange         = '#f78c6c'
+local purple         = '#c792ea'
+local cyan           = '#89ddff'
+local fg             = '#959dcb'
+local fg_light       = '#bfc7d5'
+local fg_dark        = '#676e96'
+local hollow         = '#424760'
+local hollow_lighter = '#30354e'
+local white          = '#ffffff'
+
+-- }}}
+
+-- Editor Highlight Groups {{{
 
 local editor_syntax = {
     CursorLine   = { bg = bg_dark },
     Conceal      = {},
     Cursor       = { fg = bg, bg = yellow },
     Directory    = { fg = blue, gui = 'bold' },
-    DiffAdd      = {},
-    DiffChange   = {},
-    DiffDelete   = {},
-    DiffText     = { },
+    DiffAdd      = { fg = green },
+    DiffChange   = { fg = yellow },
+    DiffDelete   = { fg = red },
+    DiffText     = { fg = blue },
     EndOfBuffer  = { bg = bg, fg = bg },
     ErrorMsg     = { fg = red, gui = 'bold' },
     VertSplit    = { bg = bg, fg = bg_dark },
-    Folded       = {},
-    FoldColumn   = {},
-    SignColumn   = {},
-    IncSearch    = {},
-    Substitute   = {},
+    Folded       = { fg = fg_dark, gui = 'italic' },
+    FoldColumn   = { fg = yellow },
+    SignColumn   = { fg = yellow },
+    IncSearch    = { bg = yellow, fg = bg },
+    Substitute   = { bg = blue },
     LineNr       = { fg = fg_dark },
     CursorLineNr = { fg = fg },
     MatchParen   = { fg = cyan, gui = 'bold' },
@@ -57,7 +82,7 @@ local editor_syntax = {
     PmenuThumb   = { bg = fg },
     Question     = {},
     QuickFixLine = {},
-    Search       = {},
+    Search       = { bg = hollow },
     SpecialKey   = {},
     SpellBad     = {},
     SpellCap     = {},
@@ -68,11 +93,11 @@ local editor_syntax = {
     TabLine      = {},
     TabLineFill  = {},
     TabLineSel   = {},
-    Title        = {},
-    Visual       = {},
-    VisualNOS    = {},
+    Title        = { fg = green },
+    Visual       = { bg = hollow_lighter },
+    VisualNOS    = { bg = hollow_lighter },
     WarningMsg   = { fg = orange, gui = 'italic' },
-    Whitespace   = { bg = orange },
+    Whitespace   = { bg = yellow },
     WildMenu     = {}
 }
 
@@ -80,6 +105,10 @@ for group, styles in pairs(editor_syntax) do
     highlight(group, styles)
 end
 
+-- }}}
+
+-- Vim Default Code Syntax {{{
+            
 local code_syntax = {
     Comment        = { fg = fg_dark, gui = 'italic' },
     Constant       = { fg = yellow },
@@ -128,6 +157,10 @@ for group, styles in pairs(code_syntax) do
     highlight(group, styles)
 end
 
+-- }}}
+
+-- Plugin Highlight Groups {{{
+
 local plugin_syntax = {
     GitGutterAdd           = { fg = green },
     GitGutterChange        = { fg = yellow },
@@ -139,27 +172,34 @@ for group, styles in pairs(plugin_syntax) do
     highlight(group, styles)
 end
 
+-- }}}
+
+-- Syntax Plugin And Language Highlight Groups {{{
+
 local lang_syntax = {
-    luaTable = { fg = fg_light },
-    luaBraces = { fg = fg_light },
-    luaIn = { fg = cyan, gui = 'italic' },
+    luaTable          = { fg = fg_light },
+    luaBraces         = { fg = fg_light },
+    luaIn             = { fg = cyan, gui = 'italic' },
 
     -- https://github.com/tbastos/vim-lua
-    luaFunc = { fg = blue },
-    luaFuncCall = { fg = blue },
-    luaFuncName = { fg = blue },
-    luaBuiltIn = { fg = blue },
-    luaLocal = { fg = purple },
-    luaSpecialValue = { fg = blue },
-    luaFunction = { fg = cyan, gui = 'italic' },
+    luaFunc           = { fg = blue },
+    luaFuncCall       = { fg = blue },
+    luaFuncName       = { fg = blue },
+    luaBuiltIn        = { fg = blue },
+    luaLocal          = { fg = purple },
+    luaSpecialValue   = { fg = blue },
+    luaFunction       = { fg = cyan, gui = 'italic' },
     luaSymbolOperator = { fg = cyan },
-    luaConstant = { fg = orange }
+    luaConstant       = { fg = orange }
 }
 
 for group, styles in pairs(lang_syntax) do
     highlight(group, styles)
 end
 
+-- }}}
+
+-- Setting Neovim Terminal Color {{{
 vim.api.nvim_set_var('terminal_color_0',          bg)
 vim.api.nvim_set_var('terminal_color_1',          red)
 vim.api.nvim_set_var('terminal_color_2',          green)
@@ -178,3 +218,5 @@ vim.api.nvim_set_var('terminal_color_14',         cyan)
 vim.api.nvim_set_var('terminal_color_15',         white)
 vim.api.nvim_set_var('terminal_color_background', bg)
 vim.api.nvim_set_var('terminal_color_foreground', fg)
+
+-- }}}
