@@ -51,7 +51,6 @@ local white          = '#ffffff'
 
 local editor_syntax = {
     CursorLine   = { bg = bg_dark },
-    Conceal      = {},
     Cursor       = { fg = bg, bg = yellow },
     Directory    = { fg = blue, gui = 'bold' },
     DiffAdd      = { fg = green },
@@ -65,39 +64,65 @@ local editor_syntax = {
     FoldColumn   = { fg = yellow },
     SignColumn   = { fg = yellow },
     IncSearch    = { bg = yellow, fg = bg },
-    Substitute   = { bg = blue },
+    Substitute   = { bg = blue, fg = bg },
     LineNr       = { fg = fg_dark },
     CursorLineNr = { fg = fg },
     MatchParen   = { fg = cyan, gui = 'bold' },
+    Normal       = { fg = fg_light, bg = bg },
+    Pmenu        = { bg = bg_dark, fg = fg_light },
+    PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
+    PmenuSbar    = { bg = bg_lighter },
+    PmenuThumb   = { bg = fg },
+    Search       = { bg = hollow },
+    SpecialKey   = { bg = bg_light },
+    SpellBad     = { gui = 'underline', sp = red },
+    SpellCap     = { gui = 'underline', sp = yellow },
+    SpellLocal   = { gui = 'underline', sp = orange },
+    SpellRare    = { gui = 'underline', sp = blue },
+    TabLine      = { bg = bg, fg = fg_light },
+    TabLineFill  = { bg = bg, fg = fg_light },
+    TabLineSel   = { bg = cyan, fg = bg_dark, gui = 'bold'},
+    Title        = { fg = green },
+    Visual       = { bg = hollow_lighter },
+    VisualNOS    = { bg = hollow_lighter },
+    WarningMsg   = { fg = yellow, gui = 'italic' },
+    Whitespace   = { bg = yellow }, -- TODO: i don't know where this is
+
+    -- git highlighting
+    gitcommitComment        = { fg = fg_dark, gui = 'italic' },
+    gitcommitUntracked      = { fg = fg_dark, gui = 'italic' },
+    gitcommitDiscarded      = { fg = fg_dark, gui = 'italic' },
+    gitcommitSelected       = { fg = fg_dark, gui = 'italic' },
+    gitcommitUnmerged       = { fg = green },
+    gitcommitBranch         = { fg = purple },
+    gitcommitNoBranch       = { fg = purple },
+    gitcommitDiscardedType  = { fg = red },
+    gitcommitSelectedType   = { fg = green },
+    gitcommitUntrackedFile  = { fg = cyan },
+    gitcommitDiscardedFile  = { fg = red },
+    gitcommitDiscardedArrow = { fg = red },
+    gitcommitSelectedFile   = { fg = green },
+    gitcommitSelectedArrow  = { fg = green },
+    gitcommitUnmergedFile   = { fg = yellow },
+    gitcommitUnmergedArrow  = { fg = yellow },
+    gitcommitSummary        = { fg = fg_light },
+    gitcommitOverflow       = { fg = red },
+    gitcommitOnBranch      = {},
+    gitcommitHeader        = {},
+    gitcommitFile          = {},
+
+    -- User dependent groups, probably useless to change the default:
+    Conceal      = {},
     ModeMsg      = {},
     MsgArea      = {},
     MsgSeparator = {},
     MoreMsg      = {},
     NonText      = {},
-    Normal       = { fg = fg_light, bg = bg },
     NormalFloat  = {},
-    Pmenu        = { bg = bg_dark, fg = fg_light },
-    PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
-    PmenuSbar    = { bg = bg_lighter },
-    PmenuThumb   = { bg = fg },
     Question     = {},
     QuickFixLine = {},
-    Search       = { bg = hollow },
-    SpecialKey   = {},
-    SpellBad     = {},
-    SpellCap     = {},
-    SpellLocal   = {},
-    SpellRare    = {},
     StatusLine   = {},
     StatusLineNC = {},
-    TabLine      = {},
-    TabLineFill  = {},
-    TabLineSel   = {},
-    Title        = { fg = green },
-    Visual       = { bg = hollow_lighter },
-    VisualNOS    = { bg = hollow_lighter },
-    WarningMsg   = { fg = orange, gui = 'italic' },
-    Whitespace   = { bg = yellow },
     WildMenu     = {}
 }
 
@@ -190,7 +215,7 @@ local lang_syntax = {
     luaSpecialValue   = { fg = blue },
     luaFunction       = { fg = cyan, gui = 'italic' },
     luaSymbolOperator = { fg = cyan },
-    luaConstant       = { fg = orange }
+    luaConstant       = { fg = orange },
 }
 
 for group, styles in pairs(lang_syntax) do
@@ -200,6 +225,7 @@ end
 -- }}}
 
 -- Setting Neovim Terminal Color {{{
+
 vim.api.nvim_set_var('terminal_color_0',          bg)
 vim.api.nvim_set_var('terminal_color_1',          red)
 vim.api.nvim_set_var('terminal_color_2',          green)
