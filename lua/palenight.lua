@@ -6,14 +6,16 @@
 -- Based On:   https://github.com/drewtempelmeyer/palenight.vim and vscode material palenight
 
 -- TODO: 
--- Fix git stuff, (check git commit)
--- Finish and check the editor highlight
--- Better vim default syntax
--- Color rust.vim
--- Color js plugin
--- Color ts plugin
--- Color c/cpp plugin
--- Color python plugin
+-- color vim.vim
+-- color rust.vim
+-- color javascript.vim
+-- color typescript.vim
+-- color c.vim
+-- color cpp.vim
+-- color python.vim
+-- color html.vim
+-- color xml.vim
+-- then, just add colors for every plugins as i need them
 
 -- Highlight Function And Color definitons {{{
 
@@ -69,6 +71,7 @@ local editor_syntax = {
     CursorLineNr = { fg = fg },
     MatchParen   = { fg = cyan, gui = 'bold' },
     Normal       = { fg = fg_light, bg = bg },
+    NormalFloat  = { bg = bg_dark },
     Pmenu        = { bg = bg_dark, fg = fg_light },
     PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
     PmenuSbar    = { bg = bg_lighter },
@@ -118,7 +121,6 @@ local editor_syntax = {
     MsgSeparator = {},
     MoreMsg      = {},
     NonText      = {},
-    NormalFloat  = {},
     Question     = {},
     QuickFixLine = {},
     StatusLine   = {},
@@ -136,14 +138,14 @@ end
             
 local code_syntax = {
     Comment        = { fg = fg_dark, gui = 'italic' },
-    Constant       = { fg = yellow },
+    Constant       = { fg = cyan },
     String         = { fg = green },
     Character      = { fg = green, gui = 'bold' },
     Number         = { fg = orange },
     Float          = { fg = orange },
     Boolean        = { fg = orange },
 
-    Identifier     = { fg = blue },
+    Identifier     = { fg = heavy_red },
     Function       = { fg = cyan, gui = 'italic' },
 
     Statement      = { fg = blue, gui = 'italic' },
@@ -152,28 +154,28 @@ local code_syntax = {
     Label          = { fg = cyan, gui = 'italic' },
     Operator       = { fg = cyan, gui = 'italic' },
     Exception      = { fg = cyan, gui = 'italic' },
-    Keyword        = { fg = orange },
+    Keyword        = { fg = heavy_red },
 
     Include        = { fg = blue },
-    Define         = { fg = blue },
-    Macro          = { fg = yellow },
-    PreProc        = { fg = fg, gui = 'italic' },
-    PreCondit      = { fg = fg, gui = 'italic' },
+    Define         = { fg = purple },
+    Macro          = { fg = purple },
+    PreProc        = { fg = yellow },
+    PreCondit      = { fg = yellow },
 
     Type           = { fg = yellow },
     StorageClass   = { fg = yellow },
     Structure      = { fg = yellow },
-    Typedef        = { fg = blue },
+    Typedef        = { fg = yellow },
 
-    Special        = { fg = cyan },
-    SpecialChar    = { fg = cyan },
+    Special        = { fg = blue },
+    SpecialChar    = {},
     Tag            = { fg = orange },
-    SpecialComment = { fg = fg, gui = 'bold' },
-    Debug          = { fg = yellow },
+    SpecialComment = { fg = fg_dark, gui = 'bold' },
+    Debug          = {},
     Delimiter      = {},
 
     Ignore         = {},
-    Underlined     = { fg = cyan, gui = 'underline' },
+    Underlined     = { gui = 'underline' },
     Error          = { fg = heavy_red },
     Todo           = { fg = purple, gui = 'bold' },
 }
@@ -203,7 +205,7 @@ end
 
 local lang_syntax = {
     luaTable          = { fg = fg_light },
-    luaBraces         = { fg = fg_light },
+    luaBraces         = { fg = cyan },
     luaIn             = { fg = cyan, gui = 'italic' },
 
     -- https://github.com/tbastos/vim-lua
@@ -212,10 +214,26 @@ local lang_syntax = {
     luaFuncName       = { fg = blue },
     luaBuiltIn        = { fg = blue },
     luaLocal          = { fg = purple },
-    luaSpecialValue   = { fg = blue },
+    luaSpecialValue   = { fg = purple },
+    luaStatement      = { fg = purple },
     luaFunction       = { fg = cyan, gui = 'italic' },
     luaSymbolOperator = { fg = cyan },
     luaConstant       = { fg = orange },
+
+    -- zsh.vim
+    zshTodo            = code_syntax.Todo, 
+    zshComment         = code_syntax.Comment,
+    zshPreProc         = code_syntax.PreProc,
+    zshString          = code_syntax.String,
+    zshStringDelimiter = { fg = cyan },
+    zshPrecommand      = { fg = blue },
+    zshKeyword         = code_syntax.Function,
+    zshCommands        = { fg = blue },
+    zshOptStart        = { fg = blue, gui = 'italic' },
+    zshOption          = { fg = cyan, gui = 'italic' },
+    zshNumber          = code_syntax.Number,
+    zshSubst           = { fg = yellow },
+    zshSubstDelim      = { fg = cyan }
 }
 
 for group, styles in pairs(lang_syntax) do
