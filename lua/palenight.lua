@@ -7,7 +7,6 @@
 
 -- TODO: 
 -- color vim.vim
--- color rust.vim
 -- color javascript.vim
 -- color typescript.vim
 -- color c.vim
@@ -152,8 +151,8 @@ local code_syntax = {
     Conditional    = { fg = cyan, gui = 'italic' },
     Repeat         = { fg = cyan, gui = 'italic' },
     Label          = { fg = cyan, gui = 'italic' },
-    Operator       = { fg = cyan, gui = 'italic' },
     Exception      = { fg = cyan, gui = 'italic' },
+    Operator       = { fg = cyan },
     Keyword        = { fg = heavy_red },
 
     Include        = { fg = blue },
@@ -204,9 +203,9 @@ end
 -- Syntax Plugin And Language Highlight Groups {{{
 
 local lang_syntax = {
-    luaTable          = { fg = fg_light },
-    luaBraces         = { fg = cyan },
-    luaIn             = { fg = cyan, gui = 'italic' },
+    luaTable  = { fg = fg_light },
+    luaBraces = { fg = cyan },
+    luaIn     = { fg = cyan, gui = 'italic' },
 
     -- https://github.com/tbastos/vim-lua
     luaFunc           = { fg = blue },
@@ -233,7 +232,24 @@ local lang_syntax = {
     zshOption          = { fg = cyan, gui = 'italic' },
     zshNumber          = code_syntax.Number,
     zshSubst           = { fg = yellow },
-    zshSubstDelim      = { fg = cyan }
+    zshSubstDelim      = { fg = cyan },
+
+    -- Rust
+    rustKeyword     = { fg = orange },
+    rustFuncCall    = { fg = blue },
+    rustModPathSep  = { fg = cyan },
+    rustIdentifier  = { fg = fg_light },
+    rustFuncName    = { fg = blue },
+    rustSigil       = { fg = cyan },
+    rustMacro       = { fg = blue },
+    rustStorage     = { fg = orange },
+    rustModPath     = { fg = fg_light },
+    rustEnumVariant = { fg = fg_light },
+    rustStructure   = { fg = orange },
+
+    -- js
+    javascriptBraces   = { fg = fg_light }, 
+    javascriptReserved = { fg = purple }, 
 }
 
 for group, styles in pairs(lang_syntax) do
