@@ -1,13 +1,14 @@
 # Nvim-palenight.lua
 <!-- ![nvim-palenight.lua][screenshot] -->
 
-A dark color scheme for Vim/Neovim based off [this great palenight plugin](https://github.com/drewtempelmeyer/palenight.vim)
+A dark color scheme for Neovim based off [this great palenight plugin](https://github.com/drewtempelmeyer/palenight.vim)
 
 ## Notices
 
+- The background is #1b1e2b and not #292d3e
+- This plugin works better with [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 - I don't want to bother with non true color and terminal colors because don't use a tty, i use the good old [alacritty](https://github.com/alacritty/alacritty)
 - I want to port most of what i can from vimscript to lua
-- There were some color choices that i didn't like and i had to manually change them in my configs.
 - Thanks again [@drewtempelmeyer](https://github.com/drewtempelmeyer)
 
 ## Installation

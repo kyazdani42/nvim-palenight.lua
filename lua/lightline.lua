@@ -7,23 +7,27 @@ local colors = {
     tabline = {}
 }
 
-local colors_vertsplit = {"#1c1f2b", 59, 15}
-local colors_special_grey = {"#292d3e", 238, 15}
-local colors_menu_grey = {"#3B4253", 237, 8}
-local colors_cursor_grey = {"#292d3e", 236, 8}
-local colors_gutter_fg_grey = {"#4B5263", 238, 15}
-local colors_blue = {"#82b1ff", 39, 4}
-local colors_dark_red = {"#BE5046", 196, 9}
-local colors_white = {"#bfc7d5", 145, 7}
-local colors_green = {"#c3e88D", 114, 2}
-local colors_purple = {"#c792ea", 170, 5}
-local colors_yellow = {"#ffcb6b", 180, 3}
-local colors_light_red = {"#ff869a", 204, 1}
-local colors_red = {"#ff5370", 204, 1}
-local colors_dark_yellow = {"#F78C6C", 173, 11}
-local colors_cyan = {"#89DDFF", 38, 6}
-local colors_comment_grey = {"#697098", 59, 15}
-local colors_black = {"#292D3E", 235, 0}
+local function create_color(color)
+    return { color, 0, 0 }
+end
+
+local colors_vertsplit      = create_color("#1b1e2b")
+local colors_special_grey   = create_color("#1b1e2b")
+local colors_menu_grey      = create_color("#292d3e")
+local colors_cursor_grey    = create_color("#1b1e2b")
+local colors_gutter_fg_grey = create_color("#292d3e")
+local colors_blue           = create_color("#82b1ff")
+local colors_dark_red       = create_color("#BE5046")
+local colors_white          = create_color("#bfc7d5")
+local colors_green          = create_color("#c3e88D")
+local colors_purple         = create_color("#c792ea")
+local colors_yellow         = create_color("#ffcb6b")
+local colors_light_red      = create_color("#ff869a")
+local colors_red            = create_color("#ff5370")
+local colors_dark_yellow    = create_color("#F78C6C")
+local colors_cyan           = create_color("#89DDFF")
+local colors_comment_grey   = create_color("#697098")
+local colors_black          = create_color("#1b1e2b")
 
 colors.normal.left     = { { colors_black, colors_purple }, { colors_purple, colors_menu_grey } }
 colors.normal.right    = colors.normal.left
@@ -48,11 +52,12 @@ colors.tabline.right   = { { colors_black, colors_yellow } }
 colors.tabline.middle  = { { colors_black, colors_menu_grey } }
 colors.tabline.tabsel  = colors.tabline.right
 
-colors.inactive.left   = { { colors_black, colors_menu_grey }, { colors_black, colors_menu_grey } }
-colors.inactive.right  = colors.inactive.left
-colors.inactive.middle = { { colors_black, colors_menu_grey } }
+colors.inactive.left   = { { colors_comment_grey, colors_black }, { colors_comment_grey, colors_black } }
+colors.inactive.right  = { { colors_black, colors_black }, { colors_black, colors_black } }
+colors.inactive.middle = { {  colors_comment_grey, colors_black } }
 
-vim.api.nvim_set_var(
-    'lightline#colorscheme#palenight#palette',
-    vim.api.nvim_call_function('lightline#colorscheme#flatten', { colors })
-)
+local lightline_var       = 'lightline#colorscheme#palenight#palette'
+local lightline_flat_func = 'lightline#colorscheme#flatten'
+local colors_flattened    =  vim.api.nvim_call_function(lightline_flat_func, { colors })
+
+vim.api.nvim_set_var(lightline_var, colors_flattened)

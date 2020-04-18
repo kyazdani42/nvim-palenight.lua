@@ -5,17 +5,6 @@
 -- License:    The MIT License (MIT)
 -- Based On:   https://github.com/drewtempelmeyer/palenight.vim and vscode material palenight
 
--- TODO: 
--- color vim.vim
--- color javascript.vim
--- color typescript.vim
--- color c.vim
--- color cpp.vim
--- color python.vim
--- color html.vim
--- color xml.vim
--- then, just add colors for every plugins as i need them
-
 -- Highlight Function And Color definitons {{{
 
 local function highlight(group, styles)
@@ -26,7 +15,7 @@ local function highlight(group, styles)
     vim.api.nvim_command('highlight '..group..' '..gui..' '..sp..' '..fg..' '..bg)
 end
 
-local bg_dark        = '#1c1f2b'
+local bg_dark        = '#1b1e2b'
 local bg             = '#292d3e'
 local bg_light       = '#32374d'
 local bg_lighter     = '#444267'
@@ -40,7 +29,7 @@ local orange         = '#f78c6c'
 local purple         = '#c792ea'
 local cyan           = '#89ddff'
 local fg             = '#959dcb'
-local fg_light       = '#bfc7d5'
+local fg_light       = '#a6accd'
 local fg_dark        = '#676e96'
 local hollow         = '#424760'
 local hollow_lighter = '#30354e'
@@ -51,16 +40,16 @@ local white          = '#ffffff'
 -- Editor Highlight Groups {{{
 
 local editor_syntax = {
-    CursorLine   = { bg = bg_dark },
-    Cursor       = { fg = bg, bg = yellow },
+    CursorLine   = { bg = bg },
+    Cursor       = { fg = bg_dark, bg = yellow },
     Directory    = { fg = blue, gui = 'bold' },
     DiffAdd      = { fg = green },
     DiffChange   = { fg = yellow },
     DiffDelete   = { fg = red },
     DiffText     = { fg = blue },
-    EndOfBuffer  = { bg = bg, fg = bg },
+    EndOfBuffer  = { bg = bg_dark, fg = bg_dark },
     ErrorMsg     = { fg = red, gui = 'bold' },
-    VertSplit    = { bg = bg, fg = bg_dark },
+    VertSplit    = { bg = bg_dark, fg = bg },
     Folded       = { fg = fg_dark, gui = 'italic' },
     FoldColumn   = { fg = yellow },
     SignColumn   = { fg = yellow },
@@ -69,9 +58,9 @@ local editor_syntax = {
     LineNr       = { fg = fg_dark },
     CursorLineNr = { fg = fg },
     MatchParen   = { fg = cyan, gui = 'bold' },
-    Normal       = { fg = fg_light, bg = bg },
-    NormalFloat  = { bg = bg_dark },
-    Pmenu        = { bg = bg_dark, fg = fg_light },
+    Normal       = { fg = fg_light, bg = bg_dark },
+    NormalFloat  = { bg = bg },
+    Pmenu        = { bg = bg, fg = fg_light },
     PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
     PmenuSbar    = { bg = bg_lighter },
     PmenuThumb   = { bg = fg },
@@ -192,6 +181,9 @@ local plugin_syntax = {
     GitGutterChange        = { fg = yellow },
     GitGutterDelete        = { fg = red },
     GitGutterChangeDelete  = { fg = orange },
+
+    diffAdded              = { fg = green },
+    diffRemoved            = { fg = heavy_red },
 }
 
 for group, styles in pairs(plugin_syntax) do
@@ -203,11 +195,12 @@ end
 -- Syntax Plugin And Language Highlight Groups {{{
 
 local lang_syntax = {
-    luaTable  = { fg = fg_light },
-    luaBraces = { fg = cyan },
-    luaIn     = { fg = cyan, gui = 'italic' },
-
-    -- https://github.com/tbastos/vim-lua
+    xmlEndTag         = { fg = cyan, gui = 'italic' },
+    -- lua.vim
+    luaTable          = { fg = fg_light },
+    luaBraces         = { fg = cyan },
+    luaIn             = { fg = cyan, gui = 'italic' },
+    -- lua polyglot (tbastos/vim-lua)
     luaFunc           = { fg = blue },
     luaFuncCall       = { fg = blue },
     luaFuncName       = { fg = blue },
@@ -234,7 +227,7 @@ local lang_syntax = {
     zshSubst           = { fg = yellow },
     zshSubstDelim      = { fg = cyan },
 
-    -- Rust
+    -- rust polyglot (rust.vim)
     rustKeyword     = { fg = orange },
     rustFuncCall    = { fg = blue },
     rustModPathSep  = { fg = cyan },
@@ -247,9 +240,54 @@ local lang_syntax = {
     rustEnumVariant = { fg = fg_light },
     rustStructure   = { fg = orange },
 
-    -- js
-    javascriptBraces   = { fg = fg_light }, 
-    javascriptReserved = { fg = purple }, 
+    -- javascript polyglot (pangloss/vim-javascript)
+    jsStorageClass        = { fg = purple },
+    jsAsyncKeyword        = { fg = cyan, gui = 'italic' },
+    jsForAwait            = { fg = cyan, gui = 'italic' },
+    jsArrowFunction       = { fg = purple },
+    jsReturn              = { fg = purple },
+    jsFuncCall            = { fg = blue },
+    jsFuncBraces          = { fg = cyan },
+    jsExport              = { fg = cyan, gui = 'italic' },
+    jsGlobalObjects       = { fg = yellow },
+    jsxTagName            = { fg = red },
+    jsxComponentName      = { fg = yellow },
+    jsxAttrib             = { fg = purple },
+    jsxBraces             = { fg = cyan },
+    jsTemplateBraces      = { fg = cyan },
+    jsFuncParens          = { fg = cyan },
+    jsDestructuringBraces = { fg = cyan },
+    jsObjectBraces        = { fg = cyan },
+    jsObjectKey           = { fg = red },
+    jsNull                = { fg = orange },
+
+    typescriptOperator          = { fg = cyan },
+    typescriptAsyncFuncKeyword  = { fg = cyan, gui = 'italic' },
+    typescriptCall              = { fg = fg_light },
+    typescriptBraces            = { fg = cyan },
+    typescriptTemplateSB        = { fg = cyan },
+    typescriptTry               = { fg = cyan, gui = 'italic' },
+    typescriptExceptions        = { fg = cyan, gui = 'italic' },
+    typescriptOperator          = { fg = cyan, gui = 'italic' },
+    typescriptExport            = { fg = cyan, gui = 'italic' },
+    typescriptStatementKeyword  = { fg = cyan, gui = 'italic' },
+    typescriptImport            = { fg = cyan, gui = 'italic' },
+    typescriptArrowFunc         = { fg = purple },
+    typescriptArrowFuncArg      = { fg = fg_light },
+    typescriptArrayMethod       = { fg = blue },
+    typescriptStringMethod      = { fg = blue },
+    typescriptTypeReference     = { fg = yellow },
+    typescriptObjectLabel       = { fg = red },
+    typescriptParens            = { fg = fg_light }, 
+    typescriptTypeBrackets      = { fg = cyan },
+    typescriptXHRMethod         = { fg = blue },
+    typescriptResponseProp      = { fg = blue },
+    typescriptBOMLocationMethod = { fg = blue },
+    typescriptHeadersMethod     = { fg = blue },
+    typescriptVariable          = { fg = purple },
+
+    htmlTag = { fg = cyan },
+    htmlEndTag = { fg = cyan },
 }
 
 for group, styles in pairs(lang_syntax) do
@@ -260,7 +298,7 @@ end
 
 -- Setting Neovim Terminal Color {{{
 
-vim.api.nvim_set_var('terminal_color_0',          bg)
+vim.api.nvim_set_var('terminal_color_0',          bg_dark)
 vim.api.nvim_set_var('terminal_color_1',          red)
 vim.api.nvim_set_var('terminal_color_2',          green)
 vim.api.nvim_set_var('terminal_color_3',          yellow)
@@ -276,7 +314,7 @@ vim.api.nvim_set_var('terminal_color_12',         blue)
 vim.api.nvim_set_var('terminal_color_13',         purple)
 vim.api.nvim_set_var('terminal_color_14',         cyan)
 vim.api.nvim_set_var('terminal_color_15',         white)
-vim.api.nvim_set_var('terminal_color_background', bg)
-vim.api.nvim_set_var('terminal_color_foreground', fg)
+vim.api.nvim_set_var('terminal_color_background', bg_dark)
+vim.api.nvim_set_var('terminal_color_foreground', fg_light)
 
 -- }}}
