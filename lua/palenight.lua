@@ -241,6 +241,10 @@ local lang_syntax = {
     rustStructure   = { fg = orange },
 
     -- javascript polyglot (pangloss/vim-javascript)
+    jsFunction            = { fg = cyan, gui = 'italic' },
+    jsFuncName            = { fg = blue },
+    jsImport              = { fg = cyan, gui = 'italic' },
+    jsFrom                = { fg = cyan, gui = 'italic' },
     jsStorageClass        = { fg = purple },
     jsAsyncKeyword        = { fg = cyan, gui = 'italic' },
     jsForAwait            = { fg = cyan, gui = 'italic' },
@@ -259,6 +263,7 @@ local lang_syntax = {
     jsDestructuringBraces = { fg = cyan },
     jsObjectBraces        = { fg = cyan },
     jsObjectKey           = { fg = red },
+    jsObjectShorthandProp = { fg = fg_light },
     jsNull                = { fg = orange },
 
     typescriptOperator          = { fg = cyan },
