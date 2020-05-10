@@ -15,6 +15,7 @@ local function highlight(group, styles)
     vim.api.nvim_command('highlight '..group..' '..gui..' '..sp..' '..fg..' '..bg)
 end
 
+local bg_darker      = '#121622'
 local bg_dark        = '#1b1e2b'
 local bg             = '#292d3e'
 local bg_light       = '#32374d'
@@ -59,8 +60,8 @@ local editor_syntax = {
     CursorLineNr = { fg = fg },
     MatchParen   = { fg = cyan, gui = 'bold' },
     Normal       = { fg = fg_light, bg = bg_dark },
-    NormalFloat  = { bg = bg },
-    Pmenu        = { bg = bg, fg = fg_light },
+    NormalFloat  = { bg = bg_darker },
+    Pmenu        = { bg = bg_darker, fg = fg_light },
     PmenuSel     = { bg = cyan, fg = bg_lighter, gui = 'bold' },
     PmenuSbar    = { bg = bg_lighter },
     PmenuThumb   = { bg = fg },
@@ -166,7 +167,7 @@ local code_syntax = {
     Underlined     = { gui = 'underline' },
     Error          = { fg = heavy_red },
     Todo           = { fg = purple, gui = 'bold' },
-}
+  }
 
 for group, styles in pairs(code_syntax) do
     highlight(group, styles)
@@ -239,6 +240,8 @@ local lang_syntax = {
     rustModPath     = { fg = fg_light },
     rustEnumVariant = { fg = fg_light },
     rustStructure   = { fg = orange },
+    rustTypedef     = { fg = orange },
+
 
     -- javascript polyglot (pangloss/vim-javascript)
     jsFunction            = { fg = cyan, gui = 'italic' },
