@@ -306,23 +306,23 @@ end
 
 -- Setting Neovim Terminal Color {{{
 
-vim.api.nvim_set_var('terminal_color_0',          bg_dark)
-vim.api.nvim_set_var('terminal_color_1',          red)
-vim.api.nvim_set_var('terminal_color_2',          green)
-vim.api.nvim_set_var('terminal_color_3',          yellow)
-vim.api.nvim_set_var('terminal_color_4',          blue)
-vim.api.nvim_set_var('terminal_color_5',          purple)
-vim.api.nvim_set_var('terminal_color_6',          cyan)
-vim.api.nvim_set_var('terminal_color_7',          fg)
-vim.api.nvim_set_var('terminal_color_8',          grey)
-vim.api.nvim_set_var('terminal_color_9',          red)
-vim.api.nvim_set_var('terminal_color_10',         green)
-vim.api.nvim_set_var('terminal_color_11',         orange)
-vim.api.nvim_set_var('terminal_color_12',         blue)
-vim.api.nvim_set_var('terminal_color_13',         purple)
-vim.api.nvim_set_var('terminal_color_14',         cyan)
-vim.api.nvim_set_var('terminal_color_15',         white)
-vim.api.nvim_set_var('terminal_color_background', bg_dark)
-vim.api.nvim_set_var('terminal_color_foreground', fg_light)
+vim.g.terminal_color_0          = bg_dark
+vim.g.terminal_color_1          = red
+vim.g.terminal_color_2          = green
+vim.g.terminal_color_3          = yellow
+vim.g.terminal_color_4          = blue
+vim.g.terminal_color_5          = purple
+vim.g.terminal_color_6          = cyan
+vim.g.terminal_color_7          = fg
+vim.g.terminal_color_8          = grey
+vim.g.terminal_color_9          = red
+vim.g.terminal_color_10         = green
+vim.g.terminal_color_11         = orange
+vim.g.terminal_color_12         = blue
+vim.g.terminal_color_13         = purple
+vim.g.terminal_color_14         = cyan
+vim.g.terminal_color_15         = white
+vim.g.terminal_color_background = bg_dark
+vim.g.terminal_color_foreground = fg_light
 
 -- }}}
